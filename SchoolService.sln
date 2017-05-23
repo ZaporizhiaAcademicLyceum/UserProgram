@@ -1,11 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26228.12
+VisualStudioVersion = 15.0.26430.6
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SchoolService", "SchoolService\SchoolService.csproj", "{475386DD-0C78-4120-A91D-4F9D168921B4}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XAMLConverter", "SchoolService\XAMLConverter\XAMLConverter.csproj", "{E1F3F7A0-5FE8-447D-B2EE-065B770B0712}"
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "SchoolServiceSetup", "SchoolServiceSetup\SchoolServiceSetup.vdproj", "{4CC5B833-7237-40FD-8671-5CF55BB69001}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -26,6 +28,9 @@ Global
 		{E1F3F7A0-5FE8-447D-B2EE-065B770B0712}.DebugOnSurfaceSEA|Any CPU.Build.0 = DebugOnSurfaceSEA|Any CPU
 		{E1F3F7A0-5FE8-447D-B2EE-065B770B0712}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E1F3F7A0-5FE8-447D-B2EE-065B770B0712}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4CC5B833-7237-40FD-8671-5CF55BB69001}.Debug|Any CPU.ActiveCfg = Debug
+		{4CC5B833-7237-40FD-8671-5CF55BB69001}.DebugOnSurfaceSEA|Any CPU.ActiveCfg = Debug
+		{4CC5B833-7237-40FD-8671-5CF55BB69001}.Release|Any CPU.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

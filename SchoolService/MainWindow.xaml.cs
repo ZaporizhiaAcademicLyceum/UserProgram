@@ -28,6 +28,7 @@ namespace SchoolService
     public partial class MainWindow : Window
     {
         int counter = 0;
+        private string _cachedNewsHtml = String.Empty;
 
         public MainWindow()
         {
@@ -35,20 +36,8 @@ namespace SchoolService
 
             DispatcherTimer dispatcherTimer = new DispatcherTimer();
             dispatcherTimer.Tick += new EventHandler(DispatcherTimer_Tick);
-            dispatcherTimer.Interval = new TimeSpan(0, 0, 1);
+            dispatcherTimer.Interval = new TimeSpan(0, 0, 2);
             dispatcherTimer.Start();
-
-            newsFlowDoc.Blocks.Clear();
-            string xamlStr = HtmlToXamlConverter.ConvertHtmlToXaml("<div><div><b>12.05.2017</b></div><div>{{ news.text }}<hr></div></div>", false);
-            StringReader stringReader = new StringReader(xamlStr);
-            System.Xml.XmlReader xmlReader = System.Xml.XmlReader.Create(stringReader);
-            Section sec = XamlReader.Load(xmlReader) as Section;
-            while (sec.Blocks.Count > 0)
-            {
-                var block = sec.Blocks.FirstBlock;
-                sec.Blocks.Remove(block);
-                newsFlowDoc.Blocks.Add(block);
-            }
         }
 
         public static TimeSpan GetUpTime()
@@ -81,26 +70,35 @@ namespace SchoolService
             ipValue.Content = String.Join("\n", TelemetryData.ip);
 
             counter++;
-            // HttpRequest();
+            UpdateNews();
         }
 
-        private void HttpRequest()
+        private void UpdateNews()
         {
-            string html = string.Empty;
-
-            HttpWebRequest myReq = (HttpWebRequest)WebRequest.Create("https://api.master-stvo.com/");
-            using (HttpWebResponse response = (HttpWebResponse)myReq.GetResponse())
-            using (Stream stream = response.GetResponseStream())
-            using (StreamReader reader = new StreamReader(stream))
+            using (WebClient client = new WebClient())
             {
-                html = reader.ReadToEnd();
+                string html = client.DownloadString("http://schoolservice.local/news/teachers");
+                if (_cachedNewsHtml != html)
+                {
+                    newsFlowDoc.Blocks.Clear();
+                    string xamlStr = HtmlToXamlConverter.ConvertHtmlToXaml(html, false);
+                    StringReader stringReader = new StringReader(xamlStr);
+                    System.Xml.XmlReader xmlReader = System.Xml.XmlReader.Create(stringReader);
+                    Section sec = XamlReader.Load(xmlReader) as Section;
+                    while (sec.Blocks.Count > 0)
+                    {
+                        var block = sec.Blocks.FirstBlock;
+                        sec.Blocks.Remove(block);
+                        newsFlowDoc.Blocks.Add(block);
+                    }
+                    _cachedNewsHtml = html;
+                }
             }
-            Console.WriteLine(html);
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            var desktopWorkingArea = System.Windows.SystemParameters.WorkArea;
+            Rect desktopWorkingArea = System.Windows.SystemParameters.WorkArea;
             this.Left = desktopWorkingArea.Right - this.Width;
             this.Top = desktopWorkingArea.Bottom - this.Height;
         }

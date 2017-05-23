@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SchoolService"
         mc:Ignorable="d"
-        Title="SchoolService" Height="240" Width="480" ResizeMode="NoResize" FontSize="16" Background="#33000000" AllowsTransparency="True" WindowStyle="None" Loaded="Window_Loaded">
+        Title="SchoolService" Height="240" Width="480" ResizeMode="NoResize" FontSize="16" Background="#66000000" AllowsTransparency="True" WindowStyle="None" Loaded="Window_Loaded" ShowInTaskbar="False">
     <Window.Resources>
         <SolidColorBrush x:Key="Black20" Color="#33000000" />
         <SolidColorBrush x:Key="Black40" Color="#66000000" />
@@ -213,16 +213,7 @@
                 <FlowDocumentScrollViewer ScrollViewer.CanContentScroll="True" VerticalScrollBarVisibility="Hidden">
                     <FlowDocument x:Name="newsFlowDoc" FontFamily="Segoe UI" FontSize="14">
                         <Paragraph>
-                            <Run Text="asdasd sadasd asd"/>
-                        </Paragraph>
-                        <Paragraph>
-                            <Run Text="asdasd asdasdasdasdasdasdasdasd asdasd asdasdas dasdasdas asdasd asdasd asdas asda dasd asd asda asdas asdasd asd adas asd ."/>
-                        </Paragraph>
-                        <Paragraph>
-                            <Run Text="asdasd asdasd asdasdsad asdasda asdasd asdasda dasdasdasdas asdasdads asdasdasda sdasdasda dasd asdas dasd asd asda sdas dasd ."/>
-                        </Paragraph>
-                        <Paragraph>
-                            <Run Text="as dasd asd asd as dad s."/>
+                            <Run Text="Загрузка..."/>
                         </Paragraph>
                     </FlowDocument>
                 </FlowDocumentScrollViewer>
